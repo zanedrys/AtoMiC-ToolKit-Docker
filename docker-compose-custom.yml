@@ -11,8 +11,8 @@ services:
       - "9000:9000"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ${USERDIR}/docker/portainer/data:/data
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/portainer/data:/data
+      - ${BASEDIR}/docker/shared:/shared
     environment:
       - TZ=${TZ}
 
@@ -23,8 +23,8 @@ services:
     restart: always
     image: lsiocommunity/organizr
     volumes:
-      - ${USERDIR}/docker/organizr:/config
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/organizr:/config
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "80:80"
     environment:
@@ -71,9 +71,9 @@ services:
     #  - /dev/ttyUSB1:/dev/ttyUSB1
     #  - /dev/ttyACM0:/dev/ttyACM0
     volumes:
-      - ${USERDIR}/docker/homeassistant:/config
+      - ${BASEDIR}/docker/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "8123:8123"
     privileged: true
@@ -89,9 +89,9 @@ services:
     hostname: qbittorrent
     container_name: "qbittorrent"
     volumes:
-      - ${USERDIR}/docker/qbittorrent:/config
-      - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/qbittorrent:/config
+      - ${BASEDIR}/Downloads/completed:/downloads
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "8124:8124"
       - "6881:6881"
@@ -110,11 +110,11 @@ services:
     hostname: radarr
     container_name: "radarr"
     volumes:
-      - ${USERDIR}/docker/radarr:/config
-      - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/media/movies:/movies
+      - ${BASEDIR}/docker/radarr:/config
+      - ${BASEDIR}/Downloads/completed:/downloads
+      - ${BASEDIR}/media/movies:/movies
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "7878:7878"
     restart: always
@@ -129,11 +129,11 @@ services:
     hostname: sonarr
     container_name: "sonarr"
     volumes:
-      - ${USERDIR}/docker/sonarr:/config
-      - ${USERDIR}/Downloads/completed:/downloads
-      - ${USERDIR}/media/tvshows:/tv
+      - ${BASEDIR}/docker/sonarr:/config
+      - ${BASEDIR}/Downloads/completed:/downloads
+      - ${BASEDIR}/media/tvshows:/tv
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/shared:/shared
     ports:
         - "8989:8989"
     restart: always
@@ -149,10 +149,10 @@ services:
     restart: always
     image: plexinc/pms-docker
     volumes:
-      - ${USERDIR}/docker/plexms:/config
-      - ${USERDIR}/Downloads/plex_tmp:/transcode
-      - ${USERDIR}/media:/media
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/plexms:/config
+      - ${BASEDIR}/Downloads/plex_tmp:/transcode
+      - ${BASEDIR}/media:/media
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "32400:32400/tcp"
       - "3005:3005/tcp"
@@ -177,9 +177,9 @@ services:
     restart: always
     image: linuxserver/tautulli
     volumes:
-      - ${USERDIR}/docker/tautulli/config:/config
-      - ${USERDIR}/docker/tautulli/logs:/logs:ro
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/tautulli/config:/config
+      - ${BASEDIR}/docker/tautulli/logs:/logs:ro
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "8181:8181"
     environment:
@@ -194,8 +194,8 @@ services:
     restart: always
     image: linuxserver/ombi
     volumes:
-      - ${USERDIR}/docker/ombi:/config
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/ombi:/config
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "3579:3579"
     environment:
@@ -209,10 +209,10 @@ services:
     hostname: jackett
     container_name: "jackett"
     volumes:
-      - ${USERDIR}/docker/jackett:/config
-      - ${USERDIR}/Downloads/completed:/downloads
+      - ${BASEDIR}/docker/jackett:/config
+      - ${BASEDIR}/Downloads/completed:/downloads
       - "/etc/localtime:/etc/localtime:ro"
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "9117:9117"
     restart: always
@@ -227,7 +227,7 @@ services:
     container_name: "mariadb"
     hostname: mariadb
     volumes:
-        - ${USERDIR}/docker/mariadb:/config
+        - ${BASEDIR}/docker/mariadb:/config
     ports:
       - target: 3306
         published: 3306
@@ -247,9 +247,9 @@ services:
     restart: always
     image: linuxserver/nextcloud
     volumes:
-      - ${USERDIR}/docker/nextcloud:/config
-      - ${USERDIR}/shared_data:/data
-      - ${USERDIR}/docker/shared:/shared
+      - ${BASEDIR}/docker/nextcloud:/config
+      - ${BASEDIR}/shared_data:/data
+      - ${BASEDIR}/docker/shared:/shared
     ports:
       - "XXXX:443"
     environment:
